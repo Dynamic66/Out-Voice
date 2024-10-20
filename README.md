@@ -2,7 +2,7 @@
 
 Copy text and let it be read out Immediately.
 - A Reading assistance tool for Dyslexic people
-- A warpper around system.speech
+- A wrapper around system.speech
 
   ![image](https://github.com/user-attachments/assets/61136e0d-e3c6-42a7-b392-8ce7b3079fac)
 
