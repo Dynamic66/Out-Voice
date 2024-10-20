@@ -8,7 +8,7 @@
 
 ## Past this into a powershell terminal to immediately use Out-Voice 
   ```
-  invoke-restmethod https://raw.githubusercontent.com/Dynamic66/Out-Voice/refs/heads/main/Out-Voice.ps1 | Invoke-Expression
+  Invoke-RestMethod https://raw.githubusercontent.com/Dynamic66/Out-Voice/refs/heads/main/Out-Voice.ps1 | Invoke-Expression
   ```
 
 ## Usage
