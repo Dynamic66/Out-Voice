@@ -1,14 +1,20 @@
 # Out-Voice
 
-Copy text and let it be read out Immediately.
+### Copy text and let it be read out Immediately.
 - A Reading assistance tool for Dyslexic people
 - A wrapper around system.speech
 
   ![image](https://github.com/user-attachments/assets/61136e0d-e3c6-42a7-b392-8ce7b3079fac)
 
+## Past this into a powershell terminal to immediately use Out-Voice 
+  ```
+  invoke-restmethod https://raw.githubusercontent.com/Dynamic66/Out-Voice/refs/heads/main/Out-Voice.ps1 | Invoke-Expression
+  ```
+
+## Usage
 Top controls:
 - AutoCopy: Immediately copies clipboard text into the textbox below
-- AutoPlay: Immediately reads content of the textbox below 
+- AutoPlay: Immediately reads content of the textbox below. Requires AutoCopy to be enabled 
 - AlwaysOnTop: Keeps the window above all other windows
 
 Textbox: Select a part of the text and click play to read it out. 
