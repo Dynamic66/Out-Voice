@@ -301,8 +301,8 @@ try {
         })
 
     $form.text = 'Out-Voice'
-    #$form.ShowIcon = $false # it hinders accesebility but clutters the taskbar
-    $form.ShowInTaskbar = $true
+    $form.ShowIcon = $false 
+    $form.ShowInTaskbar = $true # it hinders accesebility but clutters the taskbar
     $form.add_load({
             try {
                 Set-ControlProerty -Controls $form -backColor $theme.Primary
@@ -319,7 +319,7 @@ try {
             }
         })
 
-    $form.shown({
+    $form.add_shown({
         $tUpdate.Start()
         $form.TopMost = $true
         })
