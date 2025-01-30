@@ -6,7 +6,12 @@ try {
     $ErrorActionPreference = 'Continue' 
     Add-Type -AssemblyName system.Drawing
     Add-Type -AssemblyName System.Design
+   
 
+    #DEPENDENT
+    $ErrorActionPreference = 'stop'
+
+    #function to bulk configure form objects
     function Set-ControlProerty {
         param (
             [parameter(mandatory = $true)]
@@ -38,10 +43,8 @@ try {
             Write-Warning "$($control.GetType()) caused a error:`n$_"
         }
     }
-
-    #DEPENDENT
-    $ErrorActionPreference = 'stop'
     
+    #tts function
     function Invoke-Speech {
         Param
         (
@@ -137,7 +140,7 @@ try {
     $cAutoPlay.Appearance = 'button'
     $cAutoPlay.AutoSize = $true
     $cAutoPlay.TextAlign = 'MiddleCenter'
-    $cAutoPlay.Checked = $true
+    #$cAutoPlay.Checked = $flase #i prefere it to be off by default
 
     $cTopmost.TextAlign = 'MiddleCenter'
     $cTopmost.Appearance = 'button'
@@ -298,7 +301,7 @@ try {
         })
 
     $form.text = 'Out-Voice'
-    $form.ShowIcon = $false
+    #$form.ShowIcon = $false # it hinders accesebility but clutters the taskbar
     $form.ShowInTaskbar = $true
     $form.add_load({
             try {
@@ -310,13 +313,18 @@ try {
                 Set-ControlProerty -Controls $cAutoCopy, $cTopmost, $cAutoPlay, $bPlayControl, $bStop, $cVocieSelcetion -flatStyle ([System.Windows.Forms.FlatStyle]::Flat)
                 $cVocieSelcetion.Items.AddRange($sSpeech.GetInstalledVoices().voiceinfo.name)
                 $cVocieSelcetion.Text = $cVocieSelcetion.Items[0]
-                $tUpdate.Start()
-                $form.TopMost = $true
             }
             catch {
                 [System.Windows.Forms.MessageBox]::show("$_ Check if dependent Assemblys are loaded.", 'Error while loading form', 'ok', 'error')
             }
         })
+
+    $form.shown({
+        $tUpdate.Start()
+        $form.TopMost = $true
+        })
+
+
     $form.add_closing({
             #cleanup
             $ErrorActionPreference = 'SilentlyContinue'
@@ -358,7 +366,7 @@ catch {
     [System.Windows.Forms.MessageBox]::show("$_. Check if dependent Assemblys are loaded.", 'Error while setting Corntol propertys.', 'ok', 'error')
 }
 finally {
-    #cleanup in case form building 
+    #cleanup 
     $ErrorActionPreference = 'SilentlyContinue'
     $tUpdate.stop()
     $tUpdate.Dispose()
