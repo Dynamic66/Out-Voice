@@ -360,7 +360,9 @@ try {
     #endregion
     
     #endregion
-    $form.showdialog()
+
+   # $form.showdialog()
+    [System.Windows.Forms.Application]::Run($form) # this is the better way to do it
 }
 catch {
     [System.Windows.Forms.MessageBox]::show("$_. Check if dependent Assemblys are loaded.", 'Error while setting Corntol propertys.', 'ok', 'error')
